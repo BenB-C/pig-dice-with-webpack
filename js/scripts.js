@@ -1,15 +1,22 @@
 // User Interface
 $(document).ready(function() {
-  // Test -------------------
-  // Create players
-  var players = [new Player("Marina"), new Player("Erin")];
 
-  // Create new game with players
-  var game = new Game (players);
+  var game;
 
-  $("#current-player").text(game.currentPlayer.name);
-  $("#player0name").text(game.players[0].name)
-  $("#player1name").text(game.players[1].name)
+  $(".names").submit(function(event){
+    event.preventDefault();
+    var player1Input = $("#playerOne").val();
+    var player2Input = $("#playerTwo").val();
+    var players = [new Player(player1Input), new Player(player2Input)];
+
+    // Create new game with players
+    game = new Game (players);
+    $("#current-player").text(game.currentPlayer.name);
+    $("#player0name").text(player1Input);
+    $("#player1name").text(player2Input);
+    $(".container").fadeIn();
+    $(".names").fadeOut();
+  })
 
   $("button#roll").click(function(){
     game.rollDie();
@@ -22,15 +29,27 @@ $(document).ready(function() {
 
   $("button#hold").click(function(){
     game.hold();
-    $("#current-player").text(game.currentPlayer.name);
     $("#player0-score").text(game.players[0].score);
     $("#player1-score").text(game.players[1].score);
     $("#turn-score").text(game.turnTotal);
     $("#die-number").text("--");
+    if (game.currentPlayer.score >= game.maxScore) {
+      $("#winner").text(game.currentPlayer.name.toUpperCase());
+      $(".container").hide();
+      $(".gameOver").show();
+      // $("#roll").hide();
+      // $("#hold").hide();
+    } else {
+      game.changePlayers();
+      $("#current-player").text(game.currentPlayer.name);
+    }
   });
 
-
 });
+
+function refreshPage() {
+  window.location.reload();
+}
 
 // Business Logic
 function Die() {
@@ -76,7 +95,7 @@ Game.prototype.hold = function() {
   // reset turn total
   this.turnTotal = 0;
   // change players
-  this.changePlayers();
+  // this.changePlayers();
 }
 
 Game.prototype.changePlayers = function () {
