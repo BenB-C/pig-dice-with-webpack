@@ -1,9 +1,40 @@
 // User Interface
+$(document).ready(function() {
+  // Test -------------------
+  // Create players
+  var players = [new Player("Marina"), new Player("Erin")];
 
+  // Create new game with players
+  var game = new Game (players);
+
+  $("#current-player").text(game.currentPlayer.name);
+  $("#player0name").text(game.players[0].name)
+  $("#player1name").text(game.players[1].name)
+
+  $("button#roll").click(function(){
+    game.rollDie();
+    $("#die-number").text(game.die.number);
+    $("#turn-score").text(game.turnTotal);
+    if (game.die.number === 1) {
+      $("#current-player").text(game.currentPlayer.name);
+    }
+  });
+
+  $("button#hold").click(function(){
+    game.hold();
+    $("#current-player").text(game.currentPlayer.name);
+    $("#player0-score").text(game.players[0].score);
+    $("#player1-score").text(game.players[1].score);
+    $("#turn-score").text(game.turnTotal);
+    $("#die-number").text("--");
+  });
+
+
+});
 
 // Business Logic
 function Die() {
-  this.number = 3; // Between 1 and 6= marina picked 3
+  this.number; // Between 1 and 6= marina picked 3
 }
 
 // Randomly assigns a number between 1 and 6 to the die's number
@@ -17,35 +48,39 @@ function Player(name) {
   this.score = 0;
 }
 
-function Game () {
-  this.players = [];
+function Game (players) {
+  this.players = players; // array of players
   this.playerUpIndex = 0;
+  this.currentPlayer = players[0];
   this.turnTotal = 0;
   this.die = new Die ();
+  this.maxScore = 10;
 }
 
 Game.prototype.rollDie = function() {
-  this.turnTotal += this.die.roll();
-  var currentPlayer = this.players[this.playerUpIndex];
-  console.log(currentPlayer.name + " rolled a " + this.die.number);
-  console.log("turnTotal", this.turnTotal);
-  console.log("currentPlayer", currentPlayer);
+  this.die.roll();
+  if (this.die.number !== 1) {
+    this.turnTotal += this.die.number;
+  } else {
+    this.turnTotal = 0;
+    this.changePlayers();
+  }
+  // console.log(this.currentPlayer.name + " rolled a " + this.die.number);
+  // console.log("turnTotal", this.turnTotal);
+  // console.log("currentPlayer", this.currentPlayer);
 }
 
-Game.prototype.addToScore(playerIndex) {
-
+Game.prototype.hold = function() {
+  // update current player's score
+  this.currentPlayer.score += this.turnTotal;
+  // reset turn total
+  this.turnTotal = 0;
+  // change players
+  this.changePlayers();
 }
 
-// Create new game
-var game = new Game ();
-console.log(game);
-
-// Create players and add them to the game
-var player1 = new Player("Marina");
-var player2 = new Player("Erin");
-(game.players).push(player1);
-(game.players).push(player2);
-
-// Roll the die
-game.rollDie();
-game.rollDie();
+Game.prototype.changePlayers = function () {
+  this.playerUpIndex = (this.playerUpIndex + 1) % this.players.length;
+  this.currentPlayer = this.players[this.playerUpIndex];
+  // console.log(game);
+}
