@@ -16,7 +16,7 @@
     <input type="text" name="player1" id="playerTwo" value="">
     <button type="submit" id="nameSubmit" name="button">Submit</button>
   </form>
-  <div class="container">
+  <div id="game" class="container">
     <form class="" action="index.html" method="post">
       <button type="button" class="btn btn-danger" id="roll">Roll the Dice!</button>
       <button type="button" class="btn btn-success" id="hold">Hold!</button>
@@ -29,9 +29,14 @@
       <h2><span id="player1name"></span>'s Score: <span id="player1-score">0</span></h2>
     </div>
   </div>
-  <div class="gameOver">
-    <h2> GOOD JOB!!! <span id="winner"></span> WON!!!</h2>
-    <button id="refresh" type="submit"  onClick="refreshPage()">Play Again?</button>
+  <div class="container">
+  <div class="jumbotron">
+    <div class="pig">
+    <h2> GOOD JOB!!!</h2>
+    <h1><span id="winner"></span> WON!!!</h1>
+    <button id="refresh" type="button"  onClick="refreshPage()">Play Again?</button>
   </div>
+  </div>
+</div>
 </body>
 </html>

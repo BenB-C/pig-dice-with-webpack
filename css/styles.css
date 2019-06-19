@@ -1,3 +1,20 @@
 .container, .gameOver {
   display: none;
 }
+
+.jumbotron {
+  background-image: url("../img/partyPig.jpeg");
+  /* background-size: cover; */
+  background-position: center;
+  -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.pig{
+  padding: 100px;
+  color: white;
+}

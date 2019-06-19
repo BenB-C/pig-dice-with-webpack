@@ -35,8 +35,8 @@ $(document).ready(function() {
     $("#die-number").text("--");
     if (game.currentPlayer.score >= game.maxScore) {
       $("#winner").text(game.currentPlayer.name.toUpperCase());
-      $(".container").hide();
-      $(".gameOver").show();
+      $("#game").hide();
+      $(".jumbotron").show();
       // $("#roll").hide();
       // $("#hold").hide();
     } else {
@@ -73,7 +73,7 @@ function Game (players) {
   this.currentPlayer = players[0];
   this.turnTotal = 0;
   this.die = new Die ();
-  this.maxScore = 10;
+  this.maxScore = 100;
 }
 
 Game.prototype.rollDie = function() {
