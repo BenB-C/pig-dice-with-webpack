@@ -14,7 +14,7 @@ $(document).ready(function() {
     $("#current-player").text(game.currentPlayer.name);
     $("#player0name").text(player1Input);
     $("#player1name").text(player2Input);
-    $(".container").fadeIn();
+    $("#game").fadeIn();
     $(".names").fadeOut();
   })
 
@@ -36,9 +36,7 @@ $(document).ready(function() {
     if (game.currentPlayer.score >= game.maxScore) {
       $("#winner").text(game.currentPlayer.name.toUpperCase());
       $("#game").hide();
-      $(".jumbotron").show();
-      // $("#roll").hide();
-      // $("#hold").hide();
+      $("#pig").show();
     } else {
       game.changePlayers();
       $("#current-player").text(game.currentPlayer.name);
