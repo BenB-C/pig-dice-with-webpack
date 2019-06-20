@@ -8,26 +8,31 @@ body {
   width: 75px;
 }
 
-#game, #pig {
+#game-div, #pig {
   display: none;
+}
+.col-md-4 {
+display: block;
+ margin: auto;
+ border-style: outset; 
 }
 
 #roll, #hold {
   margin: 15px 100px;
   border-radius: 100%;
   border-width: 5px;
-  border-style: dashed;
+  border-style: outset;
   box-shadow: 5px 10px rgb(79, 61, 80);
   padding: 10px 5px;
   background-color: #228f18;
 }
 
 #roll {
-  cursor: url("../img/die-icon.cur"), pointer;
+  cursor: url("../img/die.png"), pointer;
 }
 
 #hold {
-  cursor: url("../img/die-icon.cur"), pointer;
+  cursor: url("../img/piggybank.png"), pointer;
 }
 
 #pig {
@@ -47,4 +52,15 @@ body {
 #page-header {
   background-color: white;
   color: #383B3D;
+}
+
+.current-player {
+  border-radius: 100%;
+  border-width: 5px;
+  border-style: outset;
+  border-color: #228f18;
+}
+
+#player0display, #player1display {
+  padding-top: 10px;
 }

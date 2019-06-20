@@ -14,7 +14,9 @@ $(document).ready(function() {
     $("#current-player").text(game.currentPlayer.name);
     $("#player0name").text(player1Input);
     $("#player1name").text(player2Input);
-    $("#game").fadeIn();
+    hightlightCurrentPlayer(game);
+
+    $("#game-div").fadeIn();
     $(".names").fadeOut();
   })
 
@@ -23,7 +25,9 @@ $(document).ready(function() {
     $("#die-number").text(game.die.number);
     $("#turn-score").text(game.turnTotal);
     if (game.die.number === 1) {
+      $("#die-roll").effect("shake");
       $("#current-player").text(game.currentPlayer.name);
+      hightlightCurrentPlayer(game);
     }
   });
 
@@ -35,10 +39,11 @@ $(document).ready(function() {
     $("#die-number").text("--");
     if (game.currentPlayer.score >= game.maxScore) {
       $("#winner").text(game.currentPlayer.name.toUpperCase());
-      $("#game").hide();
+      $("#game-div").hide();
       $("#pig").show();
     } else {
       game.changePlayers();
+      hightlightCurrentPlayer(game);
       $("#current-player").text(game.currentPlayer.name);
     }
   });
@@ -47,6 +52,13 @@ $(document).ready(function() {
 
 function refreshPage() {
   window.location.reload();
+}
+
+function hightlightCurrentPlayer(currentGame) {
+  // $(`#player${game.playerUpIndex}name`).addClass("current-player");
+  $("#player" + currentGame.playerUpIndex + "display").addClass("current-player");
+  var otherPlayerIndex = (currentGame.playerUpIndex + 1) % currentGame.players.length;
+  $("#player" + otherPlayerIndex + "display").removeClass("current-player");
 }
 
 // Business Logic

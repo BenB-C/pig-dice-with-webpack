@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
   <link rel="stylesheet" href="css/styles.css" type="text/css">
   <script src="js/jquery-3.4.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
   <script src="js/scripts.js"></script>
   <meta charset="utf-8">
   <title>Pig Dice</title>
@@ -17,43 +18,42 @@
   </div>
   <form class="names" action="index.html" method="post">
     <label for="player0">Player 1: </label>
-    <input type="text" name="player0" id="playerOne" value="">
-    <label for="player1">player 2: </label>
-    <input type="text" name="player1" id="playerTwo" value="">
+    <input type="text" name="player0" id="playerOne" placeholder="Enter Name">
+    <label for="player1">Player 2: </label>
+    <input type="text" name="player1" id="playerTwo" placeholder="Enter Name">
     <button type="submit" id="nameSubmit" name="button">Submit</button>
   </form>
-  <div id="game" class="container">
+  <div id="game-div" class="container">
     <form class="" action="index.html" method="post">
       <button type="button" id="roll">ROLL</button>
       <button type="button" id="hold">HOLD</button>
     </form>
-    <div>
-      <h2><span id="die-number">--</span></h2>
-      <div class="row">
-        <div class="col-md-6">
-          <h2><span id="player0name">Player 1</span></h2>
-        </div>
-        <div class="col-md-6">
-          <h2><span id="player1name">Player 2</span></h2>
-        </div>
+    <div class="row">
+      <div class="col-md-4">
+      <div id="die-roll">
+        <h2><span id="die-number">--</span></h2>
       </div>
+      <h3>Turn Total:<br><span id="turn-score">0</span></h3>
+    </div></div>
+    <div>
       <div class="row">
-        <div class="col-md-6">
+        <div id="player0display" class="col-md-6">
+          <h2><span id="player0name">Player 1</span></h2><br>
           <h2><span id="player0-score">0</span></h2>
         </div>
-        <div class="col-md-6">
+        <div id="player1display" class="col-md-6">
+          <h2><span id="player1name">Player 2</span></h2><br>
           <h2><span id="player1-score">0</span></h2>
         </div>
       </div>
-      <h2>Turn Total: <span id="turn-score">0</span></h2>
-      <h2>Current player: <span id="current-player"></span></h2>
+      <!-- <h2>Current player: <span id="current-player"></span></h2> -->
     </div>
   </div>
   <div class="jumbotron" id="pig">
     <!-- <div class="pig"> -->
-      <h2> GOOD JOB!!!</h2>
-      <h1><span id="winner"></span> WON!!!</h1>
-      <button id="refresh" type="button"  onClick="refreshPage()">Play Again?</button>
+    <h2> GOOD JOB!!!</h2>
+    <h1><span id="winner"></span> WON!!!</h1>
+    <button id="refresh" type="button"  onClick="refreshPage()">Play Again?</button>
     <!-- </div> -->
   </div>
 </body>
