@@ -1,17 +1,50 @@
+body {
+  text-align: center;
+  color: #383B3D;
+  background-color: rgb(137, 105, 140);
+}
+
+#page-header a img {
+  width: 75px;
+}
+
 #game, #pig {
   display: none;
+}
+
+#roll, #hold {
+  margin: 15px 100px;
+  border-radius: 100%;
+  border-width: 5px;
+  border-style: dashed;
+  box-shadow: 5px 10px rgb(79, 61, 80);
+  padding: 10px 5px;
+  background-color: #228f18;
+}
+
+#roll {
+  cursor: url("../img/die-icon.cur"), pointer;
+}
+
+#hold {
+  cursor: url("../img/die-icon.cur"), pointer;
 }
 
 #pig {
   padding: 100px;
   color: white;
-  background-image: url("../img/partyPig.jpeg");
-  /* background-size: cover; */
+  background-image: url("../img/clover.jpg");
+  background-size: cover;
   background-position: center;
-  -webkit-background-size: 100% 100%;
+  /* -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   text-align: center;
+}
+
+#page-header {
+  background-color: white;
+  color: #383B3D;
 }

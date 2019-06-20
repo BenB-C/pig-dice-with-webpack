@@ -92,8 +92,6 @@ Game.prototype.hold = function() {
   this.currentPlayer.score += this.turnTotal;
   // reset turn total
   this.turnTotal = 0;
-  // change players
-  // this.changePlayers();
 }
 
 Game.prototype.changePlayers = function () {
