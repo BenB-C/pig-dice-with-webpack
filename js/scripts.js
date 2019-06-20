@@ -28,11 +28,12 @@ $(document).ready(function() {
 
   $("button#roll").click(function(){
     game.rollDie();
-    showDie(game.die.number);
+    $(".dice").hide();
+    $("#die" + game.die.number).show();
     $("#die-number").text(game.die.number);
     $("#turn-score").text(game.turnTotal);
     if (game.die.number === 1) {
-      $("#die-roll").effect("shake");
+      $("#die-roll").effect("bounce");
       $("#current-player").text(game.currentPlayer.name);
       hightlightCurrentPlayer(game);
     }
@@ -66,11 +67,6 @@ function hightlightCurrentPlayer(currentGame) {
   $("#player" + currentGame.playerUpIndex + "display").addClass("current-player");
   var otherPlayerIndex = (currentGame.playerUpIndex + 1) % currentGame.players.length;
   $("#player" + otherPlayerIndex + "display").removeClass("current-player");
-}
-
-function showDie(number) {
-  $(".dice").hide();
-  $("#die" + number).show();
 }
 
 // Business Logic ----------------------
