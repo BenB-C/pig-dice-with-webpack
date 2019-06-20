@@ -7,6 +7,12 @@ $(document).ready(function() {
     event.preventDefault();
     var player1Input = $("#playerOne").val();
     var player2Input = $("#playerTwo").val();
+    if (player1Input == "") {
+      player1Input = "Player 1";
+    }
+    if (player2Input == "") {
+      player2Input = "Player 2";
+    }
     var players = [new Player(player1Input), new Player(player2Input)];
 
     // Create new game with players
@@ -22,6 +28,7 @@ $(document).ready(function() {
 
   $("button#roll").click(function(){
     game.rollDie();
+    showDie(game.die.number);
     $("#die-number").text(game.die.number);
     $("#turn-score").text(game.turnTotal);
     if (game.die.number === 1) {
@@ -61,7 +68,12 @@ function hightlightCurrentPlayer(currentGame) {
   $("#player" + otherPlayerIndex + "display").removeClass("current-player");
 }
 
-// Business Logic
+function showDie(number) {
+  $(".dice").hide();
+  $("#die" + number).show();
+}
+
+// Business Logic ----------------------
 function Die() {
   this.number; // Between 1 and 6= marina picked 3
 }

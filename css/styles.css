@@ -14,7 +14,8 @@ body {
 .col-md-4 {
 display: block;
  margin: auto;
- border-style: outset; 
+ border-style: outset;
+ border-width: 5px;
 }
 
 #roll, #hold {
@@ -63,4 +64,9 @@ display: block;
 
 #player0display, #player1display {
   padding-top: 10px;
+}
+
+.dice {
+  display: none;
+  width: 100px;
 }
