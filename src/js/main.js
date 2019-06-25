@@ -1,4 +1,17 @@
-// User Interface
+import Jquery from 'jquery';
+window.$ = Jquery;
+window.Jquery = Jquery;
+export default Jquery;
+
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/styles.css';
+import 'html-loader';
+import 'file-loader';
+// import 'url-loader';
+import { Player } from './player.js';
+import { Game } from './game.js';
+
 $(document).ready(function() {
 
   var game;
@@ -24,7 +37,7 @@ $(document).ready(function() {
 
     $("#game-div").fadeIn();
     $(".names").fadeOut();
-  })
+  });
 
   $("button#roll").click(function(){
     game.rollDie();
@@ -58,10 +71,6 @@ $(document).ready(function() {
 
 });
 
-function refreshPage() {
-  window.location.reload();
-}
-
 function hightlightCurrentPlayer(currentGame) {
   // $(`#player${game.playerUpIndex}name`).addClass("current-player");
   $("#player" + currentGame.playerUpIndex + "display").addClass("current-player");
@@ -70,52 +79,3 @@ function hightlightCurrentPlayer(currentGame) {
 }
 
 // Business Logic ----------------------
-function Die() {
-  this.number; // Between 1 and 6= marina picked 3
-}
-
-// Randomly assigns a number between 1 and 6 to the die's number
-Die.prototype.roll = function() {
-  this.number = Math.floor(Math.random()*6)+1;
-  return this.number;
-}
-
-function Player(name) {
-  this.name = name;
-  this.score = 0;
-}
-
-function Game (players) {
-  this.players = players; // array of players
-  this.playerUpIndex = 0;
-  this.currentPlayer = players[0];
-  this.turnTotal = 0;
-  this.die = new Die ();
-  this.maxScore = 100;
-}
-
-Game.prototype.rollDie = function() {
-  this.die.roll();
-  if (this.die.number !== 1) {
-    this.turnTotal += this.die.number;
-  } else {
-    this.turnTotal = 0;
-    this.changePlayers();
-  }
-  // console.log(this.currentPlayer.name + " rolled a " + this.die.number);
-  // console.log("turnTotal", this.turnTotal);
-  // console.log("currentPlayer", this.currentPlayer);
-}
-
-Game.prototype.hold = function() {
-  // update current player's score
-  this.currentPlayer.score += this.turnTotal;
-  // reset turn total
-  this.turnTotal = 0;
-}
-
-Game.prototype.changePlayers = function () {
-  this.playerUpIndex = (this.playerUpIndex + 1) % this.players.length;
-  this.currentPlayer = this.players[this.playerUpIndex];
-  // console.log(game);
-}

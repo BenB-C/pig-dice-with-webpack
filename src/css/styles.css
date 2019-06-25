@@ -12,10 +12,10 @@ body {
   display: none;
 }
 .col-md-4 {
-display: block;
- margin: auto;
- border-style: outset;
- border-width: 5px;
+  display: block;
+  margin: auto;
+  border-style: outset;
+  border-width: 5px;
 }
 
 #roll, #hold {
